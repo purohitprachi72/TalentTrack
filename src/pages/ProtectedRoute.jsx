@@ -4,15 +4,19 @@ import {
 	Outlet,
 	useLocation,
 } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-const AuthWrapper = () => {
-	const [loginState, setLoginState] = useState(true);
+const ProtectedRoute = () => {
+	const { loginState } = useAuth();
+
 	const location = useLocation();
+
+	console.log(loginState);
 
 	if (!loginState) {
 		return (
 			<Navigate
-				to="login"
+				to="/login"
 				replace={true}
 				state={{
 					message: 'login required to access listing page',
@@ -25,4 +29,4 @@ const AuthWrapper = () => {
 	return <Outlet />;
 };
 
-export default AuthWrapper;
+export default ProtectedRoute;
