@@ -8,11 +8,16 @@ const Layout = () => {
 
 	return (
 		<>
-			<p>Header</p>
-			<button onClick={userLogout}>Logout</button>
-			<CandidateListing />
-			<Outlet />
-			<footer>Footer</footer>
+			{/* <p>Header</p> */}
+			{/* <button onClick={userLogout}>Logout</button> */}
+
+			<div className="layout">
+				<div>
+					<CandidateListing />
+				</div>
+				<Outlet />
+			</div>
+			{/* <footer>Footer</footer> */}
 		</>
 	);
 };

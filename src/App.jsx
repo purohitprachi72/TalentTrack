@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import LoginForm from './pages/LoginForm';
 import ProtectedRoute from './pages/ProtectedRoute';
 import AuthLayout from './components/AuthLayout';
+import Candidate from './pages/Candidate';
 
 function App() {
 	const router = createBrowserRouter(
@@ -27,10 +28,7 @@ function App() {
 					/>
 					<Route path="/candidate" element={<Layout />}>
 						<Route path="new" element={<Form />} />
-						<Route
-							path=":id"
-							element={<h2>candidate details</h2>}
-						/>
+						<Route path=":id" element={<Candidate />} />
 					</Route>
 				</Route>
 			</Route>
