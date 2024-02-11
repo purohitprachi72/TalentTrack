@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	useLocation,
 	useNavigate,
 	useParams,
+	useSearchParams,
 } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
@@ -10,21 +11,40 @@ import avatar from '../../assets/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 import { deleteCandidate } from '../../../api';
 import MultiStepView from './MultiStepView';
+import axios from 'axios';
+import { BASEURL } from '../../constants/constant';
 
 const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const { data, loading } = useFetch(id);
+	const [data, setData] = useState([]);
+
+	// const { data, loading } = useFetch(id);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await axios.get(
+					`${BASEURL}/${id}`
+				);
+				setData(response.data);
+				// console.log(response.data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		fetchData();
+	}, [id]);
 
 	const handleDelete = async () => {
 		await deleteCandidate(data.id);
 		navigate('/candidate');
 	};
 
-	if (loading) {
-		return <p>Loading candidate details</p>;
-	}
+	// if (loading) {
+	// 	return <p>Loading candidate details</p>;
+	// }
 
 	const hobbies =
 		data.hobbies &&
