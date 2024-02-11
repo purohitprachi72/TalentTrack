@@ -1,13 +1,11 @@
 import axios from 'axios';
-import { BASEURL } from './constants/constant';
+import { BASEURL } from './src/constants/constant';
 
 export async function getCandidateData(id) {
 	const url = id ? `${BASEURL}/${id}` : BASEURL;
 
 	try {
-		const response = await axios.get(url, {
-			responseType: 'json',
-		});
+		const response = await axios.get(url);
 
 		console.log(response.data);
 

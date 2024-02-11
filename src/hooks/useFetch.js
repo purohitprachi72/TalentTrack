@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getCandidateData } from '../api';
+import { getCandidateData } from '../../api';
 
 export const useFetch = (id) => {
 	const [data, setData] = useState([]);

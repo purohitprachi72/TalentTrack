@@ -8,7 +8,7 @@ import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
 import avatar from '../../assets/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
-import { deleteCandidate } from '../../api';
+import { deleteCandidate } from '../../../api';
 
 const Candidate = () => {
 	const { id } = useParams();
