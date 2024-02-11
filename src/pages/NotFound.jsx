@@ -1,17 +1,18 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const NotFound = () => {
+function NotFound() {
 	return (
-		<section className="not-found-page">
+		<div className="notfound-page">
 			<h2>
-				Sorry! the page you were looking for was not found
+				Sorry, the page you were looking for was not found.
 			</h2>
 
-			<Link to="/" className="link-btn">
-				Return to Home
+			<Link className="btn cta-notfound" to="/">
+				Return to home
 			</Link>
-		</section>
+		</div>
 	);
-};
+}
 
 export default NotFound;

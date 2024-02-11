@@ -3,23 +3,26 @@ import './App.css';
 import Layout from './components/Layout';
 import Form from './components/Form';
 import NotFound from './pages/NotFound';
-import LoginForm from './pages/LoginForm';
+import LoginForm from './pages/login/LoginForm';
 import ProtectedRoute from './components/ProtectedRoute';
 import Candidate from './pages/Candidate';
 
-import Profile from './pages/Profile';
-import Home from './pages/Home';
+import Profile from './pages/profile/Profile';
+import Home from './pages/home/Home';
 import CandidateListing from './pages/CandidateListing';
 import TempLayout from './components/TempLayout';
+import Error from './components/Error';
 
 function App() {
 	return (
 		<>
-			{/* <Home></Home> */}
 			<Routes>
-				<Route element={<TempLayout />}>
+				<Route
+					element={<TempLayout />}
+					errorElement={Error}
+				>
 					<Route path="login" element={<LoginForm />} />
-					<Route path="/" element={<LoginForm />} />
+					<Route path="/" element={<Home />} />
 					<Route element={<ProtectedRoute />}>
 						<Route path="/candidate" element={<Layout />}>
 							<Route
@@ -34,9 +37,8 @@ function App() {
 
 						<Route path="profile" element={<Profile />} />
 					</Route>
-
-					<Route path="*" element={<NotFound />} />
 				</Route>
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</>
 	);

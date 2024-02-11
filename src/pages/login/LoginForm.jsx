@@ -1,6 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
+import styles from './login.module.css';
+import { FaGoogle } from 'react-icons/fa';
 
 const LoginForm = () => {
 	const location = useLocation();
@@ -19,13 +21,14 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<h2>Login Form</h2>
-			{/* <p>{message}</p> */}
-			<div>
-				<h1>Login Page</h1>
-				<button onClick={handleLogin}>
-					Login with Google
-				</button>
+			<div className={styles.loginPageContainer}>
+				<div>
+					<h2>Login</h2>
+					<button onClick={handleLogin}>
+						<FaGoogle />
+						Login with Google
+					</button>
+				</div>
 			</div>
 		</>
 	);
