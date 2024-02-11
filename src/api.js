@@ -9,10 +9,14 @@ export async function getCandidateData(id) {
 			responseType: 'json',
 		});
 
+		console.log(response.data);
+
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching candidate data:', error);
-		throw error;
+
+		// Handle the error gracefully by providing a default or fallback data
+		return getDefaultCandidateData();
 	}
 }
 
@@ -25,6 +29,15 @@ export async function deleteCandidate(id) {
 		return response.data;
 	} catch (error) {
 		console.error('Error deleting candidate:', error);
-		throw error;
+
+		// Handle the error gracefully by providing a default or fallback response
+		return getDefaultDeleteResponse();
 	}
+}
+
+function getDefaultCandidateData() {
+	return {
+		id: 0,
+		name: 'Default Candidate' /* other properties */,
+	};
 }
