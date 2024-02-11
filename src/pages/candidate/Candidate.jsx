@@ -1,16 +1,25 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import {
+	useLocation,
+	useNavigate,
+	useParams,
+} from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
 import avatar from '../../assets/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
+import { deleteCandidate } from '../../api';
 
 const Candidate = () => {
 	const { id } = useParams();
+	const navigate = useNavigate();
 
 	const { data, loading } = useFetch(id);
 
-	console.log(data);
+	const handleDelete = async () => {
+		await deleteCandidate(data.id);
+		navigate('/candidate');
+	};
 
 	if (loading) {
 		return <p>Loading candidate details</p>;
@@ -22,7 +31,9 @@ const Candidate = () => {
 				<h2>Candidate data</h2>
 				<div className={styles.actions}>
 					<button className="btn">Edit</button>
-					<button className="btn">Delete</button>
+					<button onClick={handleDelete} className="btn">
+						Delete
+					</button>
 				</div>
 			</div>
 
