@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
-import avatar from '../../assets/avatar.png';
+import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 import { deleteCandidate } from '../../../api';
 import MultiStepView from './MultiStepView';
