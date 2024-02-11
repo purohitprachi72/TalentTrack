@@ -4,6 +4,7 @@ import { getCandidateData } from '../api';
 export const useFetch = (id) => {
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(false);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -14,13 +15,29 @@ export const useFetch = (id) => {
 					: await getCandidateData();
 				setData(response);
 			} catch (error) {
-				console.error(error);
+				console.error('Error in useFetch:', error);
+
+				// Handle the error gracefully, and set an error state
+				setError(error);
+
+				// Provide default or fallback data
+				setData(getDefaultData());
 			} finally {
 				setLoading(false);
 			}
 		};
+
 		fetchData();
 	}, [id]);
 
-	return { data, loading };
+	return { data, loading, error };
 };
+
+// Placeholder function to provide default or fallback data
+function getDefaultData() {
+	// Modify this function to return default or fallback data as needed
+	return {
+		id: 0,
+		name: 'Default Candidate' /* other properties */,
+	};
+}
