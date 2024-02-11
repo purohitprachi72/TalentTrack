@@ -1,19 +1,18 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import CandidateListing from '../pages/CandidateListing';
-import Home from '../pages/home/Home';
-import Header from './Header';
-import Footer from './Footer';
+import CandidateListing from '../pages/candidate/CandidateListing';
 
 const Layout = () => {
 	return (
 		<>
-			<div className="layout">
-				<div>
+			<div className="section-layout">
+				<div className="section-listing">
 					<CandidateListing />
 				</div>
 
-				<Outlet />
+				<div className="section-outlet">
+					<Outlet />
+				</div>
 			</div>
 		</>
 	);

@@ -114,26 +114,6 @@ a:active {
 	text-align: justify;
 }
 
-.layout-outlet {
-	padding: 4rem;
-}
-
-.products-page .filters {
-	margin: 4rem 0;
-	border: 1px solid;
-	padding: 2rem;
-}
-
-.cards-container {
-	display: grid;
-	grid-template-columns: repeat(
-		auto-fit,
-		minmax(20rem, 1fr)
-	);
-	grid-gap: 1rem;
-	/* align-items: stretch; */
-}
-
 .card {
 	border: 1px solid;
 	padding: 2rem;
@@ -161,8 +141,7 @@ a:active {
 	text-align: justify;
 }
 
-.btn-add-item {
-	width: 100%;
+.btn {
 	margin: 2rem 0;
 	padding: 1rem;
 	border: none;
@@ -171,34 +150,15 @@ a:active {
 	cursor: pointer;
 	font-weight: 600;
 	color: var(--BG-DKGRAY);
+	display: flex;
+	justify-content: center;
 }
-.btn-add-item:hover,
-.btn-add-item:focus {
+
+.btn:hover,
+.btn:focus {
 	background: var(--CTA-ORANGE);
 }
 
 .disabled-btn {
 	opacity: 0.5;
-}
-
-.quantity {
-	display: flex;
-	margin: 0 auto;
-	align-items: center;
-	justify-content: space-around;
-	/* border: 1px solid; */
-	width: 100%;
-	max-width: 20rem;
-}
-.button {
-	padding: 8px;
-	cursor: pointer;
-}
-
-/* Footer */
-.footer {
-	text-align: center;
-	padding: 2.5rem;
-	background: var(--BG-DKGRAY);
-	color: var(--F-GRAY);
 }
