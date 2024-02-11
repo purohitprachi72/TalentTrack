@@ -31,7 +31,11 @@ function App() {
 							/>
 							<Route
 								path="/candidate/new"
-								element={<h2>form</h2>}
+								element={<h2> Multi Step Form</h2>}
+							/>
+							<Route
+								path="/candidate/*"
+								element={<NotFound />}
 							/>
 						</Route>
 

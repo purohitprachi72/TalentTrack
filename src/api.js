@@ -5,7 +5,9 @@ export async function getCandidateData(id) {
 	const url = id ? `${BASEURL}/${id}` : BASEURL;
 
 	try {
-		const response = await axios.get(url);
+		const response = await axios.get(url, {
+			responseType: 'json',
+		});
 
 		return response.data;
 	} catch (error) {
