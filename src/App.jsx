@@ -1,41 +1,45 @@
-import {
-	Navigate,
-	Route,
-	RouterProvider,
-	Routes,
-	createBrowserRouter,
-	createRoutesFromElements,
-} from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Layout from './pages/Layout';
+import Layout from './components/Layout';
 import Form from './components/Form';
 import NotFound from './pages/NotFound';
 import LoginForm from './pages/LoginForm';
-import ProtectedRoute from './pages/ProtectedRoute';
-import AuthLayout from './components/AuthLayout';
+import ProtectedRoute from './components/ProtectedRoute';
 import Candidate from './pages/Candidate';
 
-function App() {
-	const router = createBrowserRouter(
-		createRoutesFromElements(
-			<Route element={<AuthLayout />}>
-				<Route path="login" element={<LoginForm />} />
-				<Route path="*" element={<NotFound />} />;
-				<Route element={<ProtectedRoute />}>
-					<Route
-						path="/"
-						element={<Navigate to="/candidate" replace />}
-					/>
-					<Route path="/candidate" element={<Layout />}>
-						<Route path="new" element={<Form />} />
-						<Route path=":id" element={<Candidate />} />
-					</Route>
-				</Route>
-			</Route>
-		)
-	);
+import Profile from './pages/Profile';
+import Home from './pages/Home';
+import CandidateListing from './pages/CandidateListing';
+import TempLayout from './components/TempLayout';
 
-	return <RouterProvider router={router} />;
+function App() {
+	return (
+		<>
+			{/* <Home></Home> */}
+			<Routes>
+				<Route element={<TempLayout />}>
+					<Route path="login" element={<LoginForm />} />
+					<Route path="/" element={<LoginForm />} />
+					<Route element={<ProtectedRoute />}>
+						<Route path="/candidate" element={<Layout />}>
+							<Route
+								path="/candidate/:id"
+								element={<Candidate />}
+							/>
+							<Route
+								path="/candidate/new"
+								element={<h2>form</h2>}
+							/>
+						</Route>
+
+						<Route path="profile" element={<Profile />} />
+					</Route>
+
+					<Route path="*" element={<NotFound />} />
+				</Route>
+			</Routes>
+		</>
+	);
 }
 
 export default App;

@@ -4,22 +4,29 @@ import { useAuth } from '../context/AuthContext';
 
 const LoginForm = () => {
 	const location = useLocation();
-	const { userLogin, loginState } = useAuth();
 	const navigate = useNavigate();
 
+	const { signUpWithGoogle } = useAuth();
 
-	const handleLogin = () => {
-		console.log('logging in');
-		userLogin();
-		navigate('/');
+	const handleLogin = async () => {
+		try {
+			await signUpWithGoogle();
+			navigate('/candidate', { replace: true });
+		} catch (error) {
+			console.error(`error occurred`, error);
+		}
 	};
-
 
 	return (
 		<>
 			<h2>Login Form</h2>
 			{/* <p>{message}</p> */}
-			<button onClick={handleLogin}>login</button>
+			<div>
+				<h1>Login Page</h1>
+				<button onClick={handleLogin}>
+					Login with Google
+				</button>
+			</div>
 		</>
 	);
 };

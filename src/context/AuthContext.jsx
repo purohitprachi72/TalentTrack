@@ -1,33 +1,83 @@
-import { createContext, useContext, useState } from 'react';
+/* eslint-disable react/prop-types */
+import {
+	onAuthStateChanged,
+	signInWithPopup,
+	signOut,
+} from 'firebase/auth';
+import {
+	createContext,
+	useContext,
+	useEffect,
+	useState,
+} from 'react';
+import {
+	auth,
+	provider,
+} from '../../firebase/firebase-config';
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-	const [loginState, setLoginState] = useState(true);
+export function useAuth() {
+	return useContext(AuthContext);
+}
 
-	const userLogin = () => {
-		setLoginState(true);
+export function AuthProvider({ children }) {
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	// console.log("from context", user);
+
+	async function signUpWithGoogle() {
+		try {
+			const result = await signInWithPopup(auth, provider);
+
+			const user = result.user;
+
+			console.log('Signed up with google:', result.user);
+			return user;
+		} catch (error) {
+			console.error('error signing up with google', error);
+			throw error;
+		}
+	}
+
+	async function logOut() {
+		return signOut(auth);
+	}
+
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(
+			auth,
+			(authUser) => {
+				if (authUser) {
+					setUser(authUser);
+				} else {
+					setUser(null);
+				}
+				setLoading(false);
+			}
+		);
+
+		// unsubscribe();
+
+		return () => {
+			unsubscribe();
+		};
+	}, []);
+
+	const authValue = {
+		signUpWithGoogle,
+		logOut,
+		user,
 	};
 
-	const userLogout = () => {
-		setLoginState(false);
-	};
-
-	const value = {
-		userLogin,
-		userLogout,
-		loginState,
-	};
+	if (loading) {
+		return <h2>Loading</h2>;
+	}
 
 	return (
-		<AuthContext.Provider value={value}>
+		<AuthContext.Provider value={authValue}>
 			{children}
 		</AuthContext.Provider>
 	);
-};
-
-const useAuth = () => {
-	return useContext(AuthContext);
-};
-
-export { AuthProvider, useAuth };
+}

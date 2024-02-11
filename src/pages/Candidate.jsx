@@ -6,7 +6,7 @@ const Candidate = () => {
 	const { state } = useLocation();
 	const { candidateData } = state;
 
-	console.log(state);
+	// console.log(state);
 
 	return (
 		<div>
