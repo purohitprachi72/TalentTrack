@@ -12,6 +12,7 @@ import Home from './pages/home/Home';
 import CandidateListing from './pages/candidate/CandidateListing';
 import TempLayout from './components/TempLayout';
 import Error from './components/Error';
+import MultiStepForm from './pages/form/MultiStepForm';
 
 function App() {
 	return (
@@ -31,7 +32,7 @@ function App() {
 							/>
 							<Route
 								path="/candidate/new"
-								element={<h2> Multi Step Form</h2>}
+								element={<MultiStepForm />}
 							/>
 							<Route
 								path="/candidate/*"
