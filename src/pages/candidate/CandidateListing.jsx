@@ -4,11 +4,12 @@ import styles from './CandidateListing.module.css';
 import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 
-const CandidateListing = () => {
+const CandidateListing = ({ handleSelect }) => {
 	const { data, loading } = useFetch();
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
+		handleSelect();
 		navigate('/candidate/new');
 	};
 
@@ -31,6 +32,7 @@ const CandidateListing = () => {
 						key={candidate.id}
 						to={candidate.id}
 						state={{ candidateData: candidate }}
+						onClick={handleSelect}
 					>
 						<div className={styles.listingCard}>
 							<img

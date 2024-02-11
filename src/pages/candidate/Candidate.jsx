@@ -18,33 +18,16 @@ const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 
-	const [data, setData] = useState([]);
-
-	// const { data, loading } = useFetch(id);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await axios.get(
-					`${BASEURL}/${id}`
-				);
-				setData(response.data);
-				// console.log(response.data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
-		fetchData();
-	}, [id]);
+	const { data, loading } = useFetch(id);
 
 	const handleDelete = async () => {
 		await deleteCandidate(data.id);
 		navigate('/candidate');
 	};
 
-	// if (loading) {
-	// 	return <p>Loading candidate details</p>;
-	// }
+	if (loading) {
+		return <p>Loading candidate details</p>;
+	}
 
 	const hobbies =
 		data.hobbies &&
