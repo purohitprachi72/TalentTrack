@@ -24,8 +24,8 @@ const LoginForm = () => {
 			<div className={styles.loginPageContainer}>
 				<div>
 					<h2>Login</h2>
-					<button onClick={handleLogin}>
-						<FaGoogle />
+					<button className='btn' onClick={handleLogin}>
+						{/* <FaGoogle /> */}
 						Login with Google
 					</button>
 				</div>

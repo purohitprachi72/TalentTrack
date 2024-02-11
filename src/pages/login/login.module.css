@@ -5,11 +5,9 @@
 .loginPageContainer button {
 	padding: 2rem;
 	border: none;
-	width: 17rem;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
 	margin: auto;
 	border-radius: 4px;
 }

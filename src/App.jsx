@@ -5,11 +5,11 @@ import Form from './components/Form';
 import NotFound from './pages/NotFound';
 import LoginForm from './pages/login/LoginForm';
 import ProtectedRoute from './components/ProtectedRoute';
-import Candidate from './pages/Candidate';
+import Candidate from './pages/candidate/Candidate';
 
 import Profile from './pages/profile/Profile';
 import Home from './pages/home/Home';
-import CandidateListing from './pages/CandidateListing';
+import CandidateListing from './pages/candidate/CandidateListing';
 import TempLayout from './components/TempLayout';
 import Error from './components/Error';
 

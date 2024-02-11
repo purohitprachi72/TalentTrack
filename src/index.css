@@ -1,0 +1,21 @@
+.section-layout {
+	display: flex;
+	justify-content: space-between;
+}
+
+.section-layout > div {
+	flex-grow: 1;
+	flex-basis: 0;
+}
+
+.section-listing {
+	/* border: 1px solid; */
+	height: 60rem;
+	overflow-y: scroll;
+}
+
+.section-outlet {
+	/* border: 1px solid; */
+	/* overflow-y: hidden; */
+}
+

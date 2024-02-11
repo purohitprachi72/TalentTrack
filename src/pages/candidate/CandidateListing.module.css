@@ -1,0 +1,25 @@
+.CandidateListing {
+}
+
+.heading {
+	display: flex;
+	justify-content: space-between;
+	padding: 0rem 2rem;
+}
+
+.listing {
+	padding: 2rem;
+	/* border: 1px solid; */
+}
+
+.listingCard {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.listingCard img {
+	max-width: 12rem;
+	height: 100%;
+}
