@@ -30,7 +30,7 @@ export const useFetch = (id) => {
 		fetchData();
 	}, [id]);
 
-	return { data, loading, error };
+	return { data, loading, error, setData };
 };
 
 // Placeholder function to provide default or fallback data

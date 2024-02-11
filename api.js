@@ -7,13 +7,10 @@ export async function getCandidateData(id) {
 	try {
 		const response = await axios.get(url);
 
-		console.log(response.data);
-
 		return response.data;
 	} catch (error) {
 		console.error('Error fetching candidate data:', error);
 
-		// Handle the error gracefully by providing a default or fallback data
 		return getDefaultCandidateData();
 	}
 }

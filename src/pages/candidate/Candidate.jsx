@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
 	useLocation,
 	useNavigate,
 	useParams,
-	useSearchParams,
 } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
@@ -11,12 +10,11 @@ import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 import { deleteCandidate } from '../../../api';
 import MultiStepView from './MultiStepView';
-import axios from 'axios';
-import { BASEURL } from '../../constants/constant';
 
 const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const { data, loading } = useFetch(id);
 

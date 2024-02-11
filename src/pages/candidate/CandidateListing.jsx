@@ -6,6 +6,7 @@ import { FaLocationPin } from 'react-icons/fa6';
 
 const CandidateListing = ({ handleSelect }) => {
 	const { data, loading } = useFetch();
+
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
@@ -31,7 +32,6 @@ const CandidateListing = ({ handleSelect }) => {
 					<Link
 						key={candidate.id}
 						to={candidate.id}
-						state={{ candidateData: candidate }}
 						onClick={handleSelect}
 					>
 						<div className={styles.listingCard}>
