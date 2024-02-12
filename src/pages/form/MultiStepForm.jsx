@@ -14,9 +14,13 @@ import { useNavigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 
 const MultiStepForm = ({ initialData }) => {
-	const { setIsEditing, addNewCandidateData } = useData();
+	const {
+		setIsEditing,
+		addNewCandidateData,
+		editCandidateFromContext,
+	} = useData();
 
-	const randomId = useId()
+	const randomId = useId();
 
 	const [personalInfo, setPersonalInfo, clearPersonalInfo] =
 		usePersistentState(
@@ -52,9 +56,14 @@ const MultiStepForm = ({ initialData }) => {
 				experience,
 			};
 
-			addNewCandidateData({ id: randomId, ...formData });
-			await postCandidateData(formData);
 			navigate('/candidate');
+
+			// Make post request
+			const response = await postCandidateData(formData);
+
+			// Update local state with the server-generated ID
+			addNewCandidateData({ id: response.id, ...formData });
+
 			console.log('posted form data');
 		} catch (error) {
 			console.error(error);
@@ -79,7 +88,12 @@ const MultiStepForm = ({ initialData }) => {
 
 			// console.log('editedData', formData);
 
-			await putCandidateData(initialData.id, formData);
+			const response = await putCandidateData(
+				initialData.id,
+				formData
+			);
+			editCandidateFromContext(response.id, formData);
+
 			navigate('/candidate');
 			console.log('updated form data');
 		} catch (error) {

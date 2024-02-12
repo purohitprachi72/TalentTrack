@@ -23,7 +23,7 @@ const DataProvider = ({ children }) => {
 		const editedData = candidatesData.map((candidate) => {
 			return candidate.id === id ? newData : candidate;
 		});
-		setCandidatesData(newData);
+		setCandidatesData(editedData);
 	};
 
 	const addNewCandidateData = (payload) => {
