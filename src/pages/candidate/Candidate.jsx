@@ -12,12 +12,14 @@ import { deleteCandidate } from '../../../api/api';
 import MultiStepView from './MultiStepView';
 import { useData } from '../../context/DataContext';
 import { BASEURL } from '../../constants/constant';
+import { useToast } from '../../context/ToastContext';
 
 const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const { deleteCandidateFromContext } = useData();
 	const { isEditing, setIsEditing } = useData();
+	const { onSuccessToast } = useToast();
 
 	const [candidateData, setCandidateData] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -56,6 +58,7 @@ const Candidate = () => {
 	const handleDelete = async () => {
 		deleteCandidateFromContext(id);
 		await deleteCandidate(candidateData.id);
+		onSuccessToast('deleted successfully');
 		localStorage.clear();
 		navigate('/candidate');
 	};

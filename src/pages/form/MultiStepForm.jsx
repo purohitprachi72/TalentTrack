@@ -12,6 +12,7 @@ import {
 } from '../../../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
+import { useToast } from '../../context/ToastContext';
 
 const MultiStepForm = ({ initialData }) => {
 	const {
@@ -19,6 +20,8 @@ const MultiStepForm = ({ initialData }) => {
 		addNewCandidateData,
 		editCandidateFromContext,
 	} = useData();
+
+	const { onSuccessToast, onErrorToast } = useToast();
 
 	const randomId = useId();
 
@@ -61,6 +64,8 @@ const MultiStepForm = ({ initialData }) => {
 			// Make post request
 			const response = await postCandidateData(formData);
 
+			onSuccessToast('new candidate added');
+
 			// Update local state with the server-generated ID
 			addNewCandidateData({ id: response.id, ...formData });
 
@@ -91,6 +96,7 @@ const MultiStepForm = ({ initialData }) => {
 				formData
 			);
 			editCandidateFromContext(response.id, formData);
+			onSuccessToast(`${response.name} data updated`);
 
 			navigate('/candidate');
 			console.log('updated form data');
