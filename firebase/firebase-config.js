@@ -9,12 +9,14 @@ import {
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: 'AIzaSyCP-w9xGgDA33OhtBOmSTEIG-dpQxz-bA4',
-	authDomain: 'talenttrack-30c71.firebaseapp.com',
-	projectId: 'talenttrack-30c71',
-	storageBucket: 'talenttrack-30c71.appspot.com',
-	messagingSenderId: '820089088507',
-	appId: '1:820089088507:web:76be567b2e8d1f352f435e',
+	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+	projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+	storageBucket: import.meta.env
+		.VITE_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: import.meta.env
+		.VITE_FIREBASE_MESSAGING_SENDER_ID,
+	appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
