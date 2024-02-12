@@ -10,15 +10,19 @@ import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 import { deleteCandidate } from '../../../api';
 import MultiStepView from './MultiStepView';
+import { useData } from '../../context/DataContext';
 
 const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	const { deleteCandidateFromContext } = useData();
+
 	const { data, loading } = useFetch(id);
 
 	const handleDelete = async () => {
+		deleteCandidateFromContext(id);
 		await deleteCandidate(data.id);
 		navigate('/candidate');
 	};

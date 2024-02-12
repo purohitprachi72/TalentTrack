@@ -3,9 +3,11 @@ import { useFetch } from '../../hooks/useFetch';
 import styles from './CandidateListing.module.css';
 import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
+import { useData } from '../../context/DataContext';
 
 const CandidateListing = ({ handleSelect }) => {
-	const { data, loading } = useFetch();
+	const { loading, candidatesData } = useFetch();
+	
 
 	const navigate = useNavigate();
 
@@ -28,7 +30,7 @@ const CandidateListing = ({ handleSelect }) => {
 			</div>
 
 			<div className={styles.listing}>
-				{data.map((candidate) => (
+				{candidatesData.map((candidate) => (
 					<Link
 						key={candidate.id}
 						to={candidate.id}
