@@ -1,4 +1,4 @@
-#Talent Track
+# Talent Track
 
 Welcome to Talent Track, your go-to full-stack application designed to streamline the process of managing and analyzing candidates efficiently.
 
