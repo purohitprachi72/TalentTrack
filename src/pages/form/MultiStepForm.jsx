@@ -10,8 +10,12 @@ import {
 	postCandidateData,
 	putCandidateData,
 } from '../../../api/api';
+import { useNavigate } from 'react-router-dom';
+import { useData } from '../../context/DataContext';
 
 const MultiStepForm = ({ initialData }) => {
+	const {setIsEditing} = useData()
+
 	const [personalInfo, setPersonalInfo, clearPersonalInfo] =
 		usePersistentState(
 			'personalInfo',
@@ -20,40 +24,60 @@ const MultiStepForm = ({ initialData }) => {
 	const [education, setEducation, clearEducation] =
 		usePersistentState(
 			'education',
-			initialData?.education || []
+			initialData?.education || [{}]
 		);
 	const [skills, setSkills, clearSkills] =
-		usePersistentState('skills', initialData?.skills || []);
+		usePersistentState('skills', initialData?.skills || [{}]);
 	const [experience, setExperience, clearExperience] =
 		usePersistentState(
 			'experience',
-			initialData?.experience || []
+			initialData?.experience || [{}]
 		);
 
-	const handleComplete = async () => {
-		const formData = {
-			profile_picture:
-				'https://picsum.photos/300/200?random=1',
-			...personalInfo,
-			education,
-			skills,
-			experience,
-		};
+	const navigate = useNavigate();
 
+	const handleComplete = async () => {
 		try {
-			if (initialData) {
-				// If initialData exists, it means we are editing an existing candidate
-				await putCandidateData(initialData.id, formData);
-				console.log('updated form data');
-			} else {
-				// Otherwise, it's a new candidate, so we use the postCandidateData function
-				await postCandidateData(formData);
-				console.log('posted form data');
-			}
-			console.log('Form Data:', formData);
+			const formData = {
+				profile_picture:
+					'https://picsum.photos/300/200?random=1',
+				...personalInfo,
+				education,
+				skills,
+				experience,
+			};
+
+			await postCandidateData(formData);
+			console.log('posted form data');
 		} catch (error) {
 			console.error(error);
 		} finally {
+			clearPersonalInfo({});
+			clearExperience([]);
+			clearEducation([]);
+			clearSkills([]);
+		}
+	};
+
+	const handleEdit = async () => {
+		try {
+			const formData = {
+				id: initialData.id,
+				...personalInfo,
+				education,
+				skills,
+				experience,
+			};
+
+			// console.log('editedData', formData);
+
+			await putCandidateData(initialData.id, formData);
+			navigate('/candidate');
+			setIsEditing(false)
+			console.log('updated form data');
+		} catch (error) {
+			console.error(error);
+		}finally {
 			clearPersonalInfo({});
 			clearExperience([]);
 			clearEducation([]);
@@ -98,7 +122,10 @@ const MultiStepForm = ({ initialData }) => {
 	};
 
 	return (
-		<Onboarding onComplete={handleComplete}>
+		<Onboarding
+			onComplete={handleComplete}
+			onEdit={handleEdit}
+		>
 			<div className={styles.PersonalInfo}>
 				<div className={styles.cardTitle}>
 					<h3>Personal Details</h3>

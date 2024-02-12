@@ -1,9 +1,12 @@
 import React, { useState, Children } from 'react';
 import styles from './Onboarding.module.css';
+import { useData } from '../../context/DataContext';
 
-const Onboarding = ({ onComplete, children }) => {
+const Onboarding = ({ onComplete, children, onEdit }) => {
 	const [currentStep, setCurrentStep] = useState(0);
 	const totalSteps = children.length;
+
+	const { isEditing, setIsEditing } = useData();
 
 	const currentChild =
 		Children.toArray(children)[currentStep];
@@ -55,8 +58,15 @@ const Onboarding = ({ onComplete, children }) => {
 						<button className="btn" onClick={onNextStep}>
 							next
 						</button>
+					) : isEditing ? (
+						<button className="btn" onClick={onEdit}>
+							Edit
+						</button>
 					) : (
-						<button className="btn" onClick={handleComplete}>
+						<button
+							className="btn"
+							onClick={handleComplete}
+						>
 							Submit
 						</button>
 					)}

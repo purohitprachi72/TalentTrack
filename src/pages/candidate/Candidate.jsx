@@ -17,6 +17,7 @@ const Candidate = () => {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const { deleteCandidateFromContext } = useData();
+	const { isEditing, setIsEditing } = useData();
 
 	const [candidateData, setCandidateData] = useState(null);
 	const [loading, setLoading] = useState(false);
@@ -44,11 +45,12 @@ const Candidate = () => {
 		fetchData();
 	}, [id]);
 
-	// const handleEdit = async () => {
-	// 	navigate(`/candidate/${id}/edit`, {
-	// 		state: { candidateData: candidateData },
-	// 	});
-	// };
+	const handleEdit = async () => {
+		setIsEditing(true);
+		navigate(`/candidate/${id}/edit`, {
+			state: { candidateData },
+		});
+	};
 
 	const handleDelete = async () => {
 		deleteCandidateFromContext(id);
@@ -109,9 +111,9 @@ const Candidate = () => {
 			<div className={styles.heading}>
 				<h2>Candidate data</h2>
 				<div className={styles.actions}>
-					{/* <button onClick={handleEdit} className="btn">
+					<button onClick={handleEdit} className="btn">
 						Edit
-					</button> */}
+					</button>
 					<button onClick={handleDelete} className="btn">
 						Delete
 					</button>

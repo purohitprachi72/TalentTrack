@@ -9,7 +9,6 @@ const EditCandidate = () => {
 	const { state } = useLocation();
 	const candidateData = state?.candidateData || {};
 
-	console.log('from edit candidate', candidateData);
 	const {
 		name,
 		address,
@@ -25,6 +24,7 @@ const EditCandidate = () => {
 	} = candidateData;
 
 	const buildObject = {
+		id,
 		personalInfo: {
 			name,
 			address,
