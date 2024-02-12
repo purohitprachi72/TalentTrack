@@ -59,7 +59,7 @@ const Onboarding = ({ onComplete, children, onEdit }) => {
 				</div>
 			</div>
 
-			{currentChild}
+			<div className={styles.children}>{currentChild}</div>
 		</div>
 	);
 };

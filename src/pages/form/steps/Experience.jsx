@@ -1,10 +1,18 @@
 import React from 'react';
+import styles from '../MultiStepForm.module.css';
 
-const Experience = ({experience, setExperience, handleRemoveEntry}) => {
+const Experience = ({
+	experience,
+	setExperience,
+	handleRemoveEntry,
+}) => {
 	return (
-		<div>
+		<div className={styles.experience}>
 			{experience.map((exp, index) => (
-				<div key={index}>
+				<div
+					key={index}
+					className={styles.experienceInputs}
+				>
 					<input
 						type="text"
 						value={exp.company}
@@ -53,7 +61,7 @@ const Experience = ({experience, setExperience, handleRemoveEntry}) => {
 						}
 						placeholder="Role"
 					/>
-					<div>
+					<div className={styles.duration}>
 						<input
 							type="text"
 							value={exp.duration_from}
@@ -90,6 +98,7 @@ const Experience = ({experience, setExperience, handleRemoveEntry}) => {
 						/>
 					</div>
 					<button
+						className="btn"
 						onClick={() =>
 							handleRemoveEntry(index, setExperience)
 						}
@@ -100,6 +109,7 @@ const Experience = ({experience, setExperience, handleRemoveEntry}) => {
 				</div>
 			))}
 			<button
+				className="btn"
 				onClick={() =>
 					setExperience((prevExperience) => [
 						...prevExperience,

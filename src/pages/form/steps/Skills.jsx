@@ -1,10 +1,15 @@
 import React from 'react';
+import styles from '../MultiStepForm.module.css';
 
-const Skills = ({skills, setSkills, handleRemoveEntry}) => {
+const Skills = ({
+	skills,
+	setSkills,
+	handleRemoveEntry,
+}) => {
 	return (
-		<div>
+		<div className={styles.skills}>
 			{skills.map((skill, index) => (
-				<div key={index}>
+				<div key={index} className={styles.skillsInputs}>
 					<input
 						type="text"
 						value={skill.name}
@@ -37,16 +42,17 @@ const Skills = ({skills, setSkills, handleRemoveEntry}) => {
 						placeholder="Experience in months"
 					/>
 					<button
+						className="btn"
 						onClick={() =>
 							handleRemoveEntry(index, setSkills)
 						}
 					>
 						Remove
 					</button>
-					{/* Add more skills fields if needed */}
 				</div>
 			))}
 			<button
+				className="btn"
 				onClick={() =>
 					setSkills((prevSkills) => [...prevSkills, {}])
 				}

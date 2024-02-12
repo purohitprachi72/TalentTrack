@@ -1,36 +1,42 @@
 import React from 'react';
+import styles from '../MultiStepForm.module.css';
 
-const PersonalInfo = ({personalInfo, handlePersonalInfo}) => {
+const PersonalInfo = ({
+	personalInfo,
+	handlePersonalInfo,
+}) => {
 	return (
-		<div>
-			<input
-				type="text"
-				value={personalInfo.name || ''}
-				name="name"
-				onChange={handlePersonalInfo}
-				placeholder="Name"
-			/>
-			<input
-				type="email"
-				value={personalInfo.email || ''}
-				name="email"
-				onChange={handlePersonalInfo}
-				placeholder="Email"
-			/>
-      <input
-				type="text"
-				value={personalInfo.address || ''}
-				name="address"
-				onChange={handlePersonalInfo}
-				placeholder="Address"
-			/>
-      <input
-				type="text"
-				value={personalInfo.phone || ''}
-				name="phone"
-				onChange={handlePersonalInfo}
-				placeholder="Phone"
-			/>
+		<div className={styles.inputsPersonalInfo}>
+			<div className={styles.about}>
+				<input
+					type="text"
+					value={personalInfo.name || ''}
+					name="name"
+					onChange={handlePersonalInfo}
+					placeholder="Name"
+				/>
+				<input
+					type="email"
+					value={personalInfo.email || ''}
+					name="email"
+					onChange={handlePersonalInfo}
+					placeholder="Email"
+				/>
+				<input
+					type="text"
+					value={personalInfo.address || ''}
+					name="address"
+					onChange={handlePersonalInfo}
+					placeholder="Address"
+				/>
+				<input
+					type="text"
+					value={personalInfo.phone || ''}
+					name="phone"
+					onChange={handlePersonalInfo}
+					placeholder="Phone"
+				/>
+			</div>
 			<div>
 				<label>
 					Gender:

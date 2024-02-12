@@ -86,8 +86,6 @@ const MultiStepForm = ({ initialData }) => {
 				experience,
 			};
 
-			// console.log('editedData', formData);
-
 			const response = await putCandidateData(
 				initialData.id,
 				formData

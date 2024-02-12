@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from '../MultiStepForm.module.css';
 
 const Education = ({
 	education,
@@ -6,9 +7,9 @@ const Education = ({
 	handleRemoveEntry,
 }) => {
 	return (
-		<div>
+		<div className={styles.education}>
 			{education.map((edu, index) => (
-				<div key={index}>
+				<div key={index} className={styles.educationInputs}>
 					<input
 						type="text"
 						value={edu.institute}
@@ -78,6 +79,7 @@ const Education = ({
 						placeholder="Percentage"
 					/>
 					<button
+						className="btn"
 						onClick={() =>
 							handleRemoveEntry(index, setEducation)
 						}
@@ -87,6 +89,7 @@ const Education = ({
 				</div>
 			))}
 			<button
+				className="btn"
 				onClick={() =>
 					setEducation((prevEducation) => [
 						...prevEducation,
