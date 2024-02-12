@@ -64,4 +64,4 @@ React Icons: A library providing a vast collection of icons for use in React app
 - useFetch, usePersistentStorge custom hooks
 - using local storgae for handling the form inputs
 - Production Project Structure
-- got to know about `base prop : ""` in vite
+- got to know about `base prop : " "` in vite
