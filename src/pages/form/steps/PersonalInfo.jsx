@@ -19,14 +19,14 @@ const PersonalInfo = ({personalInfo, handlePersonalInfo}) => {
 			/>
       <input
 				type="text"
-				value={personalInfo.address || 'India'}
+				value={personalInfo.address || ''}
 				name="address"
 				onChange={handlePersonalInfo}
 				placeholder="Address"
 			/>
       <input
 				type="text"
-				value={personalInfo.phone || '+91'}
+				value={personalInfo.phone || ''}
 				name="phone"
 				onChange={handlePersonalInfo}
 				placeholder="Phone"

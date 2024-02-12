@@ -17,15 +17,7 @@ const Layout = () => {
 				</div>
 
 				<div className="section-outlet">
-					{!selected ? (
-						<div className="outlet-heading">
-							<h2>
-								view candidate or add new candidate info
-							</h2>
-						</div>
-					) : (
-						<Outlet />
-					)}
+					<Outlet />
 				</div>
 			</div>
 		</>

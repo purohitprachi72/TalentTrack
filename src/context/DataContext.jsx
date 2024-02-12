@@ -6,6 +6,7 @@ const DataContext = createContext({
 
 const DataProvider = ({ children }) => {
 	const [candidatesData, setCandidatesData] = useState([]);
+	const [candidateData, setCandidateData] = useState({});
 
 	// console.log('from context', candidatesData);
 
@@ -16,10 +17,20 @@ const DataProvider = ({ children }) => {
 		setCandidatesData(newData);
 	};
 
+	const editCandidateFromContext = (id, newData) => {
+		const editedData = candidatesData.map((candidate) => {
+			return candidate.id === id ? newData : candidate;
+		});
+		setCandidatesData(newData);
+	};
+
 	const dataValues = {
 		candidatesData,
 		setCandidatesData,
-    deleteCandidateFromContext
+		deleteCandidateFromContext,
+		editCandidateFromContext,
+    candidateData,
+    setCandidateData
 	};
 
 	return (

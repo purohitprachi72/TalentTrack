@@ -13,6 +13,7 @@ import CandidateListing from './pages/candidate/CandidateListing';
 import TempLayout from './components/TempLayout';
 import Error from './components/Error';
 import MultiStepForm from './pages/form/MultiStepForm';
+import EditCandidate from './pages/candidate/EditCandidate';
 
 function App() {
 	return (
@@ -34,6 +35,7 @@ function App() {
 								path="/candidate/new"
 								element={<MultiStepForm />}
 							/>
+							<Route path='/candidate/:id/edit' element={<EditCandidate/>}/>
 							<Route
 								path="/candidate/*"
 								element={<NotFound />}

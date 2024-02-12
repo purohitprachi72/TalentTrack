@@ -6,17 +6,29 @@ import PersonalInfo from './steps/PersonalInfo';
 import Education from './steps/Education';
 import Skills from './steps/Skills';
 import Experience from './steps/Experience';
-import { postCandidateData } from '../../../api';
+import {
+	postCandidateData,
+	putCandidateData,
+} from '../../../api';
 
-const MultiStepForm = () => {
+const MultiStepForm = ({ initialData }) => {
 	const [personalInfo, setPersonalInfo, clearPersonalInfo] =
-		usePersistentState('personalInfo', {});
+		usePersistentState(
+			'personalInfo',
+			initialData?.personalInfo || {}
+		);
 	const [education, setEducation, clearEducation] =
-		usePersistentState('education', [{}]);
+		usePersistentState(
+			'education',
+			initialData?.education || []
+		);
 	const [skills, setSkills, clearSkills] =
-		usePersistentState('skills', [{}]);
+		usePersistentState('skills', initialData?.skills || []);
 	const [experience, setExperience, clearExperience] =
-		usePersistentState('experience', [{}]);
+		usePersistentState(
+			'experience',
+			initialData?.experience || []
+		);
 
 	const handleComplete = async () => {
 		const formData = {
@@ -29,8 +41,15 @@ const MultiStepForm = () => {
 		};
 
 		try {
-			await postCandidateData(formData);
-			console.log('posted form data');
+			if (initialData) {
+				// If initialData exists, it means we are editing an existing candidate
+				await putCandidateData(initialData.id, formData);
+				console.log('updated form data');
+			} else {
+				// Otherwise, it's a new candidate, so we use the postCandidateData function
+				await postCandidateData(formData);
+				console.log('posted form data');
+			}
 			console.log('Form Data:', formData);
 		} catch (error) {
 			console.error(error);
@@ -40,10 +59,6 @@ const MultiStepForm = () => {
 			clearEducation([]);
 			clearSkills([]);
 		}
-
-		// Post data with formData
-
-		// Clear local storage
 	};
 
 	const handlePersonalInfo = (e) => {

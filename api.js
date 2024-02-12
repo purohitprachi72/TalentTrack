@@ -11,7 +11,6 @@ export async function getCandidateData(id) {
 	} catch (error) {
 		console.error('Error fetching candidate data:', error);
 		return {};
-		// return getDefaultCandidateData();
 	}
 }
 
@@ -24,9 +23,6 @@ export async function deleteCandidate(id) {
 		return response.data;
 	} catch (error) {
 		console.error('Error deleting candidate:', error);
-
-		// Handle the error gracefully by providing a default or fallback response
-		return getDefaultDeleteResponse();
 	}
 }
 
@@ -39,14 +35,18 @@ export async function postCandidateData(candidateData) {
 		return response.data;
 	} catch (error) {
 		console.error('Error posting candidate data:', error);
-		// Handle the error gracefully by providing a default or fallback response
-		return getDefaultPostResponse();
 	}
 }
 
-// function getDefaultCandidateData() {
-// 	return {
-// 		id: 0,
-// 		name: 'Default Candidate' /* other properties */,
-// 	};
-// }
+export async function putCandidateData(id, updatedData) {
+	const url = `${BASEURL}/${id}`;
+
+	try {
+		console.log(updatedData);
+		const response = await axios.put(url, updatedData);
+
+		return response.data;
+	} catch (error) {
+		console.error('Error updating candidate data:', error);
+	}
+}
