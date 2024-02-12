@@ -9,7 +9,7 @@ import Experience from './steps/Experience';
 import {
 	postCandidateData,
 	putCandidateData,
-} from '../../../api';
+} from '../../../api/api';
 
 const MultiStepForm = ({ initialData }) => {
 	const [personalInfo, setPersonalInfo, clearPersonalInfo] =

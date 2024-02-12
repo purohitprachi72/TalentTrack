@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASEURL } from './src/constants/constant';
+import { BASEURL } from '../src/constants/constant';
 
 export async function getCandidateData(id) {
 	const url = id ? `${BASEURL}/${id}` : BASEURL;

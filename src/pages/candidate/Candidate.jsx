@@ -8,7 +8,7 @@ import { useFetch } from '../../hooks/useFetch';
 import styles from './Candidate.module.css';
 import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
-import { deleteCandidate } from '../../../api';
+import { deleteCandidate } from '../../../api/api';
 import MultiStepView from './MultiStepView';
 import { useData } from '../../context/DataContext';
 import { BASEURL } from '../../constants/constant';
