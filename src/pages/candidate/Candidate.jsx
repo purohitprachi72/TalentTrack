@@ -63,16 +63,17 @@ const Candidate = () => {
 		navigate('/candidate');
 	};
 
-	const hobbies = candidateData ? (
-		candidateData.hobbies.map((hobby) => {
-			return <li>{hobby}</li>;
-		})
+	const hobbies = Array.isArray(candidateData?.hobbies) ? (
+		candidateData.hobbies.map((hobby, index) => (
+			<li key={index}>{hobby}</li>
+		))
 	) : (
-		<h2>loading...</h2>
+		<h2>no hobbies found</h2>
 	);
 
-	const educationEntries =
-		candidateData?.education &&
+	const educationEntries = Array.isArray(
+		candidateData?.education
+	) ? (
 		candidateData.education.map((edu, index) => (
 			<div key={index} className={styles.educationEntry}>
 				<h4>{edu.institute}</h4>
@@ -80,10 +81,14 @@ const Candidate = () => {
 					edu.pass_out_year ?? 'Unknown'
 				}`}</p>
 			</div>
-		));
+		))
+	) : (
+		<h2>No education information found</h2>
+	);
 
-	const skillsEntries =
-		candidateData?.skills &&
+	const skillsEntries = Array.isArray(
+		candidateData?.skills
+	) ? (
 		candidateData.skills.map((skill, index) => (
 			<div key={index} className={styles.skillEntry}>
 				<h4>{skill.name ?? 'Unknown Skill'}</h4>
@@ -91,10 +96,14 @@ const Candidate = () => {
 					skill.experience ?? 'Unknown'
 				} months`}</p>
 			</div>
-		));
+		))
+	) : (
+		<h2>No skills found</h2>
+	);
 
-	const experienceEntries =
-		candidateData?.experience &&
+	const experienceEntries = Array.isArray(
+		candidateData?.experience
+	) ? (
 		candidateData.experience.map((exp, index) => (
 			<div key={index} className={styles.experienceEntry}>
 				<h4>{exp.company ?? 'Unknown Company'}</h4>
@@ -105,7 +114,10 @@ const Candidate = () => {
 					exp.duration_from ?? 'Unknown'
 				} - ${exp.duration_to ?? 'Unknown'}`}</p>
 			</div>
-		));
+		))
+	) : (
+		<h2>No experience information found</h2>
+	);
 
 	if (loading) {
 		return <h2>loading candidate info ...</h2>;
