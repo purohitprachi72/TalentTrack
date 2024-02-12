@@ -14,6 +14,7 @@ import TempLayout from './components/TempLayout';
 import Error from './components/Error';
 import MultiStepForm from './pages/form/MultiStepForm';
 import EditCandidate from './pages/candidate/EditCandidate';
+import CreateOrEditWrapper from './pages/candidate/CreateOrEditWrapper';
 
 function App() {
 	return (
@@ -35,7 +36,10 @@ function App() {
 								path="/candidate/new"
 								element={<MultiStepForm />}
 							/>
-							<Route path='/candidate/:id/edit' element={<EditCandidate/>}/>
+							<Route
+								path="/candidate/:id/edit"
+								element={<CreateOrEditWrapper />}
+							/>
 							<Route
 								path="/candidate/*"
 								element={<NotFound />}

@@ -18,26 +18,12 @@ const Onboarding = ({ onComplete, children, onEdit }) => {
 	};
 
 	const onNextStep = () => {
-		// if (currentStep >= totalSteps - 1) {
-		// 	onComplete({ a: 1, b: 2, c: 3 });
-		// }
-
 		if (currentStep < totalSteps - 1) {
 			setCurrentStep((prev) => prev + 1);
 		}
 	};
 
 	const handleComplete = () => {
-		// const keys = Object.keys(localStorage);
-		// const onboardingKeys = keys.filter((k) =>
-		// 	k.startsWith('onboarding-')
-		// );
-		// for (let key in onboardingKeys) {
-		// data[key] = localStorage.getItem(key);
-		// }
-
-		console.log(localStorage);
-
 		const data = {};
 		onComplete(data);
 	};

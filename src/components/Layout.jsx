@@ -3,17 +3,13 @@ import { Outlet } from 'react-router-dom';
 import CandidateListing from '../pages/candidate/CandidateListing';
 
 const Layout = () => {
-	const [selected, setSelected] = useState(false);
-
-	const handleSelect = () => {
-		setSelected(true);
-	};
+	
 
 	return (
 		<>
 			<div className="section-layout">
 				<div className="section-listing">
-					<CandidateListing handleSelect={handleSelect} />
+					<CandidateListing />
 				</div>
 
 				<div className="section-outlet">

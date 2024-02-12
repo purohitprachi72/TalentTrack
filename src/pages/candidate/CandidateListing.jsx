@@ -5,14 +5,15 @@ import avatar from '/avatar.png';
 import { FaLocationPin } from 'react-icons/fa6';
 import { useData } from '../../context/DataContext';
 
-const CandidateListing = ({ handleSelect }) => {
+const CandidateListing = () => {
 	const { loading, candidatesData } = useFetch();
-	
+	const { setIsEditing } = useData();
 
 	const navigate = useNavigate();
 
 	const handleNavigate = () => {
-		handleSelect();
+		setIsEditing(false);
+		localStorage.clear();
 		navigate('/candidate/new');
 	};
 
@@ -31,11 +32,7 @@ const CandidateListing = ({ handleSelect }) => {
 
 			<div className={styles.listing}>
 				{candidatesData.map((candidate) => (
-					<Link
-						key={candidate.id}
-						to={candidate.id}
-						onClick={handleSelect}
-					>
+					<Link key={candidate.id} to={candidate.id}>
 						<div className={styles.listingCard}>
 							<img
 								src={

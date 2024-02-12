@@ -47,14 +47,16 @@ const Candidate = () => {
 
 	const handleEdit = async () => {
 		setIsEditing(true);
+		localStorage.clear();
 		navigate(`/candidate/${id}/edit`, {
-			state: { candidateData },
+			state: { candidateData, route: 'edit' },
 		});
 	};
 
 	const handleDelete = async () => {
 		deleteCandidateFromContext(id);
 		await deleteCandidate(candidateData.id);
+		localStorage.clear();
 		navigate('/candidate');
 	};
 

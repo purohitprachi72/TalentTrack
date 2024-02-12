@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import Onboarding from './Onboarding';
 import usePersistentState from '../../hooks/usePersistentState';
 import styles from './MultiStepForm.module.css';
@@ -14,7 +14,9 @@ import { useNavigate } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 
 const MultiStepForm = ({ initialData }) => {
-	const {setIsEditing} = useData()
+	const { setIsEditing, addNewCandidateData } = useData();
+
+	const randomId = useId()
 
 	const [personalInfo, setPersonalInfo, clearPersonalInfo] =
 		usePersistentState(
@@ -27,7 +29,10 @@ const MultiStepForm = ({ initialData }) => {
 			initialData?.education || [{}]
 		);
 	const [skills, setSkills, clearSkills] =
-		usePersistentState('skills', initialData?.skills || [{}]);
+		usePersistentState(
+			'skills',
+			initialData?.skills || [{}]
+		);
 	const [experience, setExperience, clearExperience] =
 		usePersistentState(
 			'experience',
@@ -47,7 +52,9 @@ const MultiStepForm = ({ initialData }) => {
 				experience,
 			};
 
+			addNewCandidateData({ id: randomId, ...formData });
 			await postCandidateData(formData);
+			navigate('/candidate');
 			console.log('posted form data');
 		} catch (error) {
 			console.error(error);
@@ -56,6 +63,7 @@ const MultiStepForm = ({ initialData }) => {
 			clearExperience([]);
 			clearEducation([]);
 			clearSkills([]);
+			setIsEditing(false);
 		}
 	};
 
@@ -73,15 +81,15 @@ const MultiStepForm = ({ initialData }) => {
 
 			await putCandidateData(initialData.id, formData);
 			navigate('/candidate');
-			setIsEditing(false)
 			console.log('updated form data');
 		} catch (error) {
 			console.error(error);
-		}finally {
+		} finally {
 			clearPersonalInfo({});
 			clearExperience([]);
 			clearEducation([]);
 			clearSkills([]);
+			setIsEditing(false);
 		}
 	};
 

@@ -12,6 +12,7 @@ const DataProvider = ({ children }) => {
 	// console.log('from context', candidatesData);
 
 	const deleteCandidateFromContext = (id) => {
+		setIsEditing(false);
 		const newData = candidatesData.filter(
 			(candidate) => candidate.id !== id
 		);
@@ -25,6 +26,12 @@ const DataProvider = ({ children }) => {
 		setCandidatesData(newData);
 	};
 
+	const addNewCandidateData = (payload) => {
+		setCandidatesData((prev) => {
+			return [...prev, payload];
+		});
+	};
+
 	const dataValues = {
 		candidatesData,
 		setCandidatesData,
@@ -34,6 +41,7 @@ const DataProvider = ({ children }) => {
 		setCandidateData,
 		isEditing,
 		setIsEditing,
+		addNewCandidateData
 	};
 
 	return (
