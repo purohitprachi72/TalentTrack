@@ -1,4 +1,5 @@
 import React, { useState, Children } from 'react';
+import styles from './Onboarding.module.css';
 
 const Onboarding = ({ onComplete, children }) => {
 	const [currentStep, setCurrentStep] = useState(0);
@@ -29,30 +30,40 @@ const Onboarding = ({ onComplete, children }) => {
 		// 	k.startsWith('onboarding-')
 		// );
 		// for (let key in onboardingKeys) {
-			// data[key] = localStorage.getItem(key);
+		// data[key] = localStorage.getItem(key);
 		// }
+
+		console.log(localStorage);
+
 		const data = {};
 		onComplete(data);
 	};
 
 	return (
-		<div>
-			<h3>
-				Step {currentStep + 1} of {totalSteps}
-			</h3>
-			{currentChild}
-			<div>
-				<button onClick={onPrevStep}>back</button>
-				{currentStep < totalSteps - 1 ? (
-					<>
-						<button onClick={onNextStep}>next</button>
-					</>
-				) : (
-					<>
-						<button onClick={handleComplete}>Submit</button>
-					</>
-				)}
+		<div className={styles.Onboarding}>
+			<div className={styles.heading}>
+				<h2>
+					Section {currentStep + 1} of {totalSteps}
+				</h2>
+				<div className={styles.actions}>
+					{currentStep > 0 && (
+						<button className="btn" onClick={onPrevStep}>
+							prev
+						</button>
+					)}
+					{currentStep < totalSteps - 1 ? (
+						<button className="btn" onClick={onNextStep}>
+							next
+						</button>
+					) : (
+						<button className="btn" onClick={handleComplete}>
+							Submit
+						</button>
+					)}
+				</div>
 			</div>
+
+			{currentChild}
 		</div>
 	);
 };

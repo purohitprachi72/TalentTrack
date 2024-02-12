@@ -1,0 +1,34 @@
+.heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.actions {
+	display: flex;
+	gap: 3rem;
+}
+
+.actions button {
+	width: 8rem;
+}
+
+.profileImage {
+	width: 20rem;
+	height: 20rem;
+}
+
+.cardContent {
+	display: flex;
+	gap: 3rem;
+	position: relative;
+}
+
+.location {
+	display: flex;
+	gap: 1rem;
+}
+
+.cardInfo h2 {
+	margin-top: 0;
+}

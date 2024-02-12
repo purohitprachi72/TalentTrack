@@ -29,7 +29,7 @@ export const useFetch = (id) => {
 				setError(error);
 
 				// Provide default or fallback data
-				setData(getDefaultData());
+				// setData(getDefaultData());
 			} finally {
 				setLoading(false);
 			}
@@ -42,10 +42,10 @@ export const useFetch = (id) => {
 };
 
 // Placeholder function to provide default or fallback data
-function getDefaultData() {
-	// Modify this function to return default or fallback data as needed
-	return {
-		id: 0,
-		name: 'Default Candidate' /* other properties */,
-	};
-}
+// function getDefaultData() {
+// 	// Modify this function to return default or fallback data as needed
+// 	return {
+// 		id: 0,
+// 		name: 'Default Candidate' /* other properties */,
+// 	};
+// }
